@@ -1,0 +1,241 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-native-promise-only/node_modules/native-promise-only/npo.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-native-promise-only">npmtest-native-promise-only (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-native-promise-only/node_modules/native-promise-only/npo.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">12.87% <small>(13 / 101)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">5.56% <small>(5 / 90)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">2.5% <small>(1 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">100% <small>(1 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-native-promise-only/node_modules/native-promise-only/</a> » npo.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*! Native Promise Only
+    v0.8.1 (c) Kyle Simpson
+    MIT License: http://getify.mit-license.org
+*/
+!function(t,n,e){n[t]=n[t]||<span class="branch-1 cbranch-no" title="branch not covered">e(),</span>"undefined"!=typeof module&amp;&amp;module.exports?module.exports=n[t]:<span class="branch-1 cbranch-no" title="branch not covered">"function"==typeof define&amp;&amp;define.amd&amp;&amp;define(<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>return n[t]}</span>)}</span>("Promise","undefined"!=typeof global?global:<span class="branch-1 cbranch-no" title="branch not covered">this,<span class="fstat-no" title="function not covered"></span>function(){</span>"use strict";<span class="fstat-no" title="function not covered">function t(t,n){<span class="cstat-no" title="statement not covered"></span>l.add(t,n),h||(h=y(l.drain))}<span class="fstat-no" title="function not covered"></span>function n(t){<span class="cstat-no" title="statement not covered"></span>var n,e=typeof t;<span class="cstat-no" title="statement not covered">r</span>eturn null==t||"object"!=e&amp;&amp;"function"!=e||(n=t.then),"function"==typeof n?n:!1}<span class="fstat-no" title="function not covered"></span>function e(){<span class="cstat-no" title="statement not covered"></span>for(var t=0;t&lt;this.chain.length;t++)<span class="cstat-no" title="statement not covered">o(this,1===this.state?this.chain[t].success:this.chain[t].failure,this.chain[t]);<span class="cstat-no" title="statement not covered">t</span></span>his.chain.length=0}<span class="fstat-no" title="function not covered"></span>function o(t,e,o){<span class="cstat-no" title="statement not covered"></span>var r,i;<span class="cstat-no" title="statement not covered">t</span>ry{<span class="cstat-no" title="statement not covered">e===!1?o.reject(t.msg):(r=e===!0?t.msg:e.call(void 0,t.msg),r===o.promise?o.reject(TypeError("Promise-chain cycle")):(i=n(r))?i.call(r,o.resolve,o.reject):o.resolve(r))}</span>catch(c){<span class="cstat-no" title="statement not covered">o.reject(c)}</span>}<span class="fstat-no" title="function not covered"></span>function r(o){<span class="cstat-no" title="statement not covered"></span>var c,u=this;<span class="cstat-no" title="statement not covered">i</span>f(!u.triggered){<span class="cstat-no" title="statement not covered">u.triggered=!0,u.def&amp;&amp;(u=u.def);<span class="cstat-no" title="statement not covered">t</span>ry{<span class="cstat-no" title="statement not covered">(c=n(o))?t(<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>var t=new f(u);<span class="cstat-no" title="statement not covered">t</span>ry{<span class="cstat-no" title="statement not covered">c.call(o,<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>r.apply(t,arguments)}</span>,<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>i.apply(t,arguments)}</span>)}</span>catch(n){<span class="cstat-no" title="statement not covered">i.call(t,n)}</span>}</span>):(u.msg=o,u.state=1,u.chain.length&gt;0&amp;&amp;t(e,u))}</span>catch(a){<span class="cstat-no" title="statement not covered">i.call(new f(u),a)}</span>}</span>}<span class="fstat-no" title="function not covered"></span>function i(n){<span class="cstat-no" title="statement not covered"></span>var o=this;<span class="cstat-no" title="statement not covered">o</span>.triggered||(o.triggered=!0,o.def&amp;&amp;(o=o.def),o.msg=n,o.state=2,o.chain.length&gt;0&amp;&amp;t(e,o))}<span class="fstat-no" title="function not covered"></span>function c(t,n,e,o){<span class="cstat-no" title="statement not covered"></span>for(var r=0;r&lt;n.length;r++)<span class="cstat-no" title="statement not covered">!<span class="fstat-no" title="function not covered">function(r){<span class="cstat-no" title="statement not covered"></span>t.resolve(n[r]).then(<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>e(r,t)}</span>,o)}</span>(r)}<span class="fstat-no" title="function not covered"></span></span>function f(t){<span class="cstat-no" title="statement not covered"></span>this.def=t,this.triggered=!1}<span class="fstat-no" title="function not covered"></span>function u(t){<span class="cstat-no" title="statement not covered"></span>this.promise=t,this.state=0,this.triggered=!1,this.chain=[],this.msg=void 0}<span class="fstat-no" title="function not covered"></span>function a(n){<span class="cstat-no" title="statement not covered"></span>if("function"!=typeof n)<span class="cstat-no" title="statement not covered">throw TypeError("Not a function");<span class="cstat-no" title="statement not covered">i</span></span>f(0!==this.__NPO__)<span class="cstat-no" title="statement not covered">throw TypeError("Not a promise");<span class="cstat-no" title="statement not covered">t</span></span>his.__NPO__=1;<span class="cstat-no" title="statement not covered">v</span>ar o=new u(this);<span class="cstat-no" title="statement not covered">t</span>his.then=<span class="fstat-no" title="function not covered">function(n,r){<span class="cstat-no" title="statement not covered"></span>var i={success:"function"==typeof n?n:!0,failure:"function"==typeof r?r:!1};<span class="cstat-no" title="statement not covered">r</span>eturn i.promise=new this.constructor(<span class="fstat-no" title="function not covered">function(t,n){<span class="cstat-no" title="statement not covered"></span>if("function"!=typeof t||"function"!=typeof n)<span class="cstat-no" title="statement not covered">throw TypeError("Not a function");<span class="cstat-no" title="statement not covered">i</span></span>.resolve=t,i.reject=n}</span>),o.chain.push(i),0!==o.state&amp;&amp;t(e,o),i.promise}</span>,this["catch"]=<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return this.then(void 0,t)}</span>;<span class="cstat-no" title="statement not covered">t</span>ry{<span class="cstat-no" title="statement not covered">n.call(void 0,<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>r.call(o,t)}</span>,<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>i.call(o,t)}</span>)}</span>catch(c){<span class="cstat-no" title="statement not covered">i.call(o,c)}</span>}<span class="cstat-no" title="statement not covered"></span>var s,h,l,p=Object.prototype.toString,y="undefined"!=typeof setImmediate?<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return setImmediate(t)}</span>:setTimeout;<span class="cstat-no" title="statement not covered">t</span>ry{<span class="cstat-no" title="statement not covered">Object.defineProperty({},"x",{}),s=<span class="fstat-no" title="function not covered">function(t,n,e,o){<span class="cstat-no" title="statement not covered"></span>return Object.defineProperty(t,n,{value:e,writable:!0,configurable:o!==!1})}</span>}</span>catch(d){<span class="cstat-no" title="statement not covered">s=<span class="fstat-no" title="function not covered">function(t,n,e){<span class="cstat-no" title="statement not covered"></span>return t[n]=e,t}</span>}<span class="cstat-no" title="statement not covered"></span>l</span>=<span class="fstat-no" title="function not covered">function(){<span class="fstat-no" title="function not covered"></span>function t(t,n){<span class="cstat-no" title="statement not covered"></span>this.fn=t,this.self=n,this.next=void 0}<span class="cstat-no" title="statement not covered"></span>var n,e,o;<span class="cstat-no" title="statement not covered">r</span>eturn{add:<span class="fstat-no" title="function not covered">function(r,i){<span class="cstat-no" title="statement not covered"></span>o=new t(r,i),e?e.next=o:n=o,e=o,o=void 0}</span>,drain:<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>var t=n;<span class="cstat-no" title="statement not covered">f</span>or(n=e=h=void 0;t;)<span class="cstat-no" title="statement not covered">t.fn.call(t.self),t=t.next}</span></span>}}</span>();<span class="cstat-no" title="statement not covered">v</span>ar g=s({},"constructor",a,!1);<span class="cstat-no" title="statement not covered">r</span>eturn a.prototype=g,s(g,"__NPO__",0,!1),s(a,"resolve",<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>var n=this;<span class="cstat-no" title="statement not covered">r</span>eturn t&amp;&amp;"object"==typeof t&amp;&amp;1===t.__NPO__?t:new n(<span class="fstat-no" title="function not covered">function(n,e){<span class="cstat-no" title="statement not covered"></span>if("function"!=typeof n||"function"!=typeof e)<span class="cstat-no" title="statement not covered">throw TypeError("Not a function");<span class="cstat-no" title="statement not covered">n</span></span>(t)}</span>)}</span>),s(a,"reject",<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return new this(<span class="fstat-no" title="function not covered">function(n,e){<span class="cstat-no" title="statement not covered"></span>if("function"!=typeof n||"function"!=typeof e)<span class="cstat-no" title="statement not covered">throw TypeError("Not a function");<span class="cstat-no" title="statement not covered">e</span></span>(t)}</span>)}</span>),s(a,"all",<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>var n=this;<span class="cstat-no" title="statement not covered">r</span>eturn"[object Array]"!=p.call(t)?n.reject(TypeError("Not an array")):0===t.length?n.resolve([]):new n(<span class="fstat-no" title="function not covered">function(e,o){<span class="cstat-no" title="statement not covered"></span>if("function"!=typeof e||"function"!=typeof o)<span class="cstat-no" title="statement not covered">throw TypeError("Not a function");<span class="cstat-no" title="statement not covered">v</span></span>ar r=t.length,i=Array(r),f=0;<span class="cstat-no" title="statement not covered">c</span>(n,t,<span class="fstat-no" title="function not covered">function(t,n){<span class="cstat-no" title="statement not covered"></span>i[t]=n,++f===r&amp;&amp;e(i)}</span>,o)}</span>)}</span>),s(a,"race",<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>var n=this;<span class="cstat-no" title="statement not covered">r</span>eturn"[object Array]"!=p.call(t)?n.reject(TypeError("Not an array")):new n(<span class="fstat-no" title="function not covered">function(e,o){<span class="cstat-no" title="statement not covered"></span>if("function"!=typeof e||"function"!=typeof o)<span class="cstat-no" title="statement not covered">throw TypeError("Not a function");<span class="cstat-no" title="statement not covered">c</span></span>(n,t,<span class="fstat-no" title="function not covered">function(t,n){<span class="cstat-no" title="statement not covered"></span>e(n)}</span>,o)}</span>)}</span>),a}</span>);
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 18 2017 06:27:19 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
